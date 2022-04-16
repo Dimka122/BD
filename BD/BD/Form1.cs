@@ -12,9 +12,22 @@ namespace BD
 {
     public partial class Form1 : Form
     {
+        Form2 f2 = new Form2();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            f2=new Form2();
+            f2.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            f2 = new Form2();
+            f2.Show();
         }
     }
 }

@@ -19,12 +19,15 @@ namespace BD.Controller
 
         IEnumerable<Users> IUsersRepository.GetUsers()
         {
+            //throw new NotImplementedException();
             //SqlConnection sqlConnection = new SqlConnection(AppConection.ConnectionString);
             //sqlConnection.Open();
-            IDbConnection db = new SqlConnection(AppConection.ConnectionString); ;
-            if(db.State==ConnectionState.Closed)
-                db.Open();
-            return db.Query<Users>("select ID,E_Mail,Parol", commandType: CommandType.Text);
+            using (IDbConnection db = new SqlConnection(AppConection.ConnectionString))
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+                return db.Query<Users>("Select ID, E_Mail, Parol", commandType: CommandType.Text);
+            }
         }
 
         bool IUsersRepository.Insert(Users users)
